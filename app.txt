@@ -1,0 +1,98 @@
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View,Image ,TouchableOpacity,Button} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
+
+const AppButton = ({ onPress, title }) => (
+  <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+    <Text style={styles.appButtonText}>{title}</Text>
+  </TouchableOpacity>
+);
+
+const Stack = createNativeStackNavigator();
+
+const MyStack = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={App}
+        />
+        <Stack.Screen name="Login" component={LoginScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <View>
+      <Image
+          style={{ width: 150, height: 150, alignSelf:'center', }}
+          source={require('./assets/annauniv.png')}
+        />
+      </View>
+      <Text style={styles.boldText}> Welcome to AU library!</Text>
+      <StatusBar style="auto" />
+
+      <View style={styles.screenContainer}>
+      <AppButton title="Login" size="sm" backgroundColor="#007bff"  onPress={() => navigation.navigate('Login')} />
+    </View>
+
+    </View>
+  );
+}
+
+const LoginScreen = ({navigation, route}) => {
+  return <Text>Login Screen</Text>;
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  body:{
+    backgroundColor: 'lightblue',
+    padding:5,
+  },
+  boldText:{
+    fontWeight:'bold',
+    fontSize:20,
+
+  },
+  CircleShape: {
+    width: 150,
+    height: 150,
+    marginBottom:20,
+    backgroundColor: '#FF9800',
+  },
+  screenContainer: {
+    justifyContent: "center",
+    padding: 5
+  },
+  appButtonContainer: {
+    elevation: 5,
+    backgroundColor: "darkblue",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase"
+  }
+
+});
+
+export default App;
