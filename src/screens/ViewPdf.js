@@ -3,9 +3,84 @@ import { FlatList,Text, View,Image,StyleSheet,Button,TouchableOpacity} from 'rea
 import { ScrollView } from 'react-native-virtualized-view';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRoute } from "@react-navigation/native"
+import { Linking } from 'react-native';
+import * as FileSystem from 'expo-file-system';
+import { useState } from 'react';
+const { StorageAccessFramework } = FileSystem;
+
+
 
 
 export default function ViewPdf() {
+  const [downloadProgress, setDownloadProgress] = useState();
+
+  const downloadPath = FileSystem.documentDirectory + (Platform.OS == 'android' ? '' : '');
+  
+  console.log(downloadPath)
+  
+  const ensureDirAsync = async (dir, intermediates = true) => {
+    const props = await FileSystem.getInfoAsync(dir)
+    if (props.exist && props.isDirectory) {
+        return props;
+    }
+    console.log(dir)
+    let _ = await FileSystem.makeDirectoryAsync(dir, { intermediates })
+    return await ensureDirAsync(dir, intermediates)
+  }
+  
+  const downloadCallback = downloadProgress => {
+    const progress = downloadProgress.totalBytesWritten / downloadProgress.totalBytesExpectedToWrite;
+    setDownloadProgress(progress);
+  };
+  
+  
+  const saveAndroidFile = async (fileUri, fileName = 'File') => {
+    try {
+      const fileString = await FileSystem.readAsStringAsync(fileUri, { encoding: FileSystem.EncodingType.Base64 });
+      
+      const permissions = await StorageAccessFramework.requestDirectoryPermissionsAsync();
+      if (!permissions.granted) {
+        return;
+      }
+  
+      try {
+        await StorageAccessFramework.createFileAsync(permissions.directoryUri, fileName, 'application/pdf')
+          .then(async (uri) => {
+            await FileSystem.writeAsStringAsync(uri, fileString, { encoding: FileSystem.EncodingType.Base64 });
+            alert('Report Downloaded Successfully')
+          })
+          .catch((e) => {
+          });
+      } catch (e) {
+        throw new Error(e);
+      }
+  
+    } catch (err) {
+    }
+  }
+  const downloadFile = async (fileUrl) => {
+    if (Platform.OS == 'android') {
+      const dir = ensureDirAsync(downloadPath);
+    }
+  
+    let fileName = fileUrl.split('Reports/')[1];
+    //alert(fileName)
+    const downloadResumable = FileSystem.createDownloadResumable(
+      fileUrl,
+      downloadPath + fileName,
+      {},
+      downloadCallback
+    );
+  
+    try {
+      const { uri } = await downloadResumable.downloadAsync();
+      if (Platform.OS == 'android')
+        saveAndroidFile(uri, fileName)
+    } catch (e) {
+      console.error('download error:', e);
+    }
+  }
+  
   const route = useRoute()
   const item = route.params?.item
   const InfoBook = () =>(
@@ -45,7 +120,10 @@ export default function ViewPdf() {
                 }}
               >
                 <Ionicons name="download-outline" size={24} color="white" style = {{fontWeight:'bold',marginRight:5,marginTop:5}} />
-                <Text style={{ color: 'white',fontWeight:'bold',fontSize:17,marginTop:5 }}>Download</Text>
+                <Text style={{ color: 'white',fontWeight:'bold',fontSize:17,marginTop:5 }}  onPress={async () => {
+    const url = item.url
+   downloadFile(url)
+    }}>Download</Text>
               </View>
             </TouchableOpacity>
 
@@ -96,13 +174,13 @@ export default function ViewPdf() {
               <View style = {{flexDirection: 'row'}}>
               <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
                 Language</Text>
-              <Text style = {{marginTop:10,marginLeft: 60,fontSize:18, fontWeight:'normal'}}> {item.Language}</Text>           
+              <Text style = {{marginTop:10,marginLeft: 60,fontSize:18, fontWeight:'normal'}}> {item.lan}</Text>           
               </View>
 
               <View style = {{flexDirection: 'column'}}>
               <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
                 Description</Text>
-              <Text style = {{marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'normal'}}> {item.Description}</Text>           
+              <Text style = {{marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'normal'}}> {item.descr}</Text>           
               </View>
 
          </View>
