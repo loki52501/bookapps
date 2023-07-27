@@ -15,9 +15,9 @@ export default function ViewPdf() {
   const [downloadProgress, setDownloadProgress] = useState();
 
   const downloadPath = FileSystem.documentDirectory + (Platform.OS == 'android' ? '' : '');
-  
-  console.log(downloadPath)
-  
+
+  const route = useRoute()
+  const item = route.params?.item
   const ensureDirAsync = async (dir, intermediates = true) => {
     const props = await FileSystem.getInfoAsync(dir)
     if (props.exist && props.isDirectory) {
@@ -34,7 +34,7 @@ export default function ViewPdf() {
   };
   
   
-  const saveAndroidFile = async (fileUri, fileName = 'File') => {
+  const saveAndroidFile = async (fileUri, fileName = item['main_title']) => {
     try {
       const fileString = await FileSystem.readAsStringAsync(fileUri, { encoding: FileSystem.EncodingType.Base64 });
       
@@ -59,11 +59,13 @@ export default function ViewPdf() {
     }
   }
   const downloadFile = async (fileUrl) => {
+    console.log('entered')
+    console.log(downloadPath)
     if (Platform.OS == 'android') {
       const dir = ensureDirAsync(downloadPath);
     }
   
-    let fileName = fileUrl.split('Reports/')[1];
+    let fileName = item['main_title'];
     //alert(fileName)
     const downloadResumable = FileSystem.createDownloadResumable(
       fileUrl,
@@ -74,6 +76,8 @@ export default function ViewPdf() {
   
     try {
       const { uri } = await downloadResumable.downloadAsync();
+      console.log('hi')
+      console.log(uri+fileName)
       if (Platform.OS == 'android')
         saveAndroidFile(uri, fileName)
     } catch (e) {
@@ -81,8 +85,7 @@ export default function ViewPdf() {
     }
   }
   
-  const route = useRoute()
-  const item = route.params?.item
+
   const InfoBook = () =>(
      
           <View >

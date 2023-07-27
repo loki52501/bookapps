@@ -101,7 +101,7 @@ console.log(data);
 
   return (
     <View>
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={data} renderItem={renderPdfs} keyExtractor={(item) => `${pdfs.pdfid}`} />
+      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={data} renderItem={renderPdfs} keyExtractor={data.pdfid} />
     </View>
   );
 }

@@ -9,7 +9,7 @@ import { createDrawerNavigator,DrawerContentScrollView,
   DrawerItemList, } from '@react-navigation/drawer';
 
 
-  import Header  from './src/components/Header';
+import Header  from './src/components/Header';
 import Onboarding from './src/screens/Onboarding';
 import Signup from './src/Sign_up&Sign_in/Signup';
 import Login from './src/Sign_up&Sign_in/Login'
