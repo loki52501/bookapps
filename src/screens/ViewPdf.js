@@ -23,7 +23,7 @@ export default function ViewPdf() {
     if (props.exist && props.isDirectory) {
         return props;
     }
-    console.log(dir)
+
     let _ = await FileSystem.makeDirectoryAsync(dir, { intermediates })
     return await ensureDirAsync(dir, intermediates)
   }
