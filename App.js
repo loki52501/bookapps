@@ -26,15 +26,16 @@ import ViewPdf from './src/screens/ViewPdf';
 import DrawerNavigator from './src/routes/homeStack';
 import InternalStack from './src/routes/InternalStack';
 import PdfReader from './src/screens/PdfReader';
+import { SearchProvider } from './src/screens/SearchContext';
+import SearchResult from './src/screens/SearchResult';
 
-  const AppStack = createStackNavigator();
   const Stack = createStackNavigator();
 
 
 
 export default function App() {
   return (
-
+<SearchProvider>
     <NavigationContainer>
    <Stack.Navigator> 
    <Stack.Screen
@@ -68,11 +69,7 @@ export default function App() {
       component={Comp_Exam}
   
     />
-    <Stack.Screen
-      name="Engg_tech"
-      component={Engg_tech}
-      
-    />
+
     <Stack.Screen
       name="Literature"
       component={Literature}
@@ -89,10 +86,16 @@ export default function App() {
       options={({ route }) => ({ pdfUrl: route.params.pdfUrl })} 
      
     />
-
+      <Stack.Screen
+      name="SearchResult"
+      component={SearchResult}
+      options={({ route }) => ({ books: route.params.books })} 
+     
+    />
         </Stack.Navigator>
   
       </NavigationContainer>
+      </SearchProvider>
   );
     {/*  
  <>

@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import Pdf from "react-native-pdf";
 import { useNavigation } from "@react-navigation/native";
 
+
 export default function EResources(props) {
 
   const [data, setData] = useState([]);

@@ -7,7 +7,7 @@ import { ListItem, SearchBar } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView } from 'react-native-virtualized-view';
-import {useEffect } from 'react';
+import Searchbar from './Searchbar';
 import Arts_Sci from '../screens/Arts_Sci';
 import Comp_Exam from '../screens/Comp_Exam';
 import Engg_tech from '../screens/Engg_tech';
@@ -16,7 +16,9 @@ import EResources from './EResources';
 import EJournals from './EJournals';
 import InternalStack from '../routes/InternalStack';
 import FirstScreen from './FirstScreen';
+import { useEffect } from 'react';
 import Literature from './Literature';
+import { Ionicons } from '@expo/vector-icons';
 const Stack = createStackNavigator();
 
 const Home = props => {
@@ -33,7 +35,7 @@ const Home = props => {
   };
   useEffect(() => {
     fetchData();
-  }, [searchText]);
+  }, []);
 
 
   const ImageSlide = () => {
@@ -193,11 +195,7 @@ const Home = props => {
    
     <ScrollView>
         <View >
-    <SearchBar
-        placeholder="Type Here..."
-        onChangeText={text=>{setSearchText(text);}}
-        value={searchText}
-      />
+    <Searchbar book={datas} />
       <ImageSlide/>
 
     <Details/>
@@ -208,6 +206,9 @@ const Home = props => {
     
   );
 };
+
+
+
 
 
 const styles = StyleSheet.create({
@@ -249,8 +250,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
-
-
 
 
 export default Home;
