@@ -136,20 +136,25 @@ export default function ViewPdf() {
                 flexDirection:'row',
                   backgroundColor: '#74c967',
                   alignSelf: 'flex-end', 
-                  marginLeft:100,
-                  width: 90,
+                  marginLeft:19,
+                  width: 130,
                   height: 40,
                   justifyContent: 'center',
                   borderRadius: 15
                 }}
               >
-                <Ionicons name="book-outline" size={24} color="white" style = {{fontWeight:'bold',marginRight:7 ,marginTop:5}} />
-                <Text style={{ color: 'white',fontWeight:'bold',fontSize:17,marginTop:5 }}>Read</Text>
+                <Ionicons name="book-outline" size={24} color="white" style = {{fontWeight:'bold',marginRight:12 ,marginTop:5}} />
+                <Text style={{ color: 'white',fontWeight:'bold',fontSize:17,marginTop:5,marginRight:14 }}>Read</Text>
               </View>
             </TouchableOpacity>
 
             </View>
               <View style={styles.container}>
+              <View style = {{flexDirection: 'row'}}>
+              <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
+                Title</Text>
+              <Text style = {{marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'normal'}}> {item.main_title}</Text>           
+              </View>
                 <View style = {{flexDirection: 'row'}}>
               <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
                 Subject</Text>

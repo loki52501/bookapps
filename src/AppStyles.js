@@ -27,22 +27,19 @@ export const PdfView = StyleSheet.create({
     borderRadius: 15,
   },
   photo: {
-    width: (SCREEN_WIDTH - (bookNumColums + 1) * BOOK_ITEM_MARGIN) / bookNumColums,
-    height: BOOK_ITEM_HEIGHT,
+    width:100,
+    height: 100,
     alignSelf: 'flex-start',
-    height: 130,
-    width: 90,
-    margin: 2
+    
+    marginLeft: 50
   },
   title: {
-    flex: 1,
+
     fontSize: 17,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#444444',
-    marginTop: 3,
-    marginRight: 5,
-    marginLeft: 5,
+ 
   },
   author:{
     fontSize:14,

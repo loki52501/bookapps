@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { FlatList, Text, View,Linking , SafeAreaView,TouchableHighlight, Pressable ,Image ,Button} from "react-native";
+import { FlatList, Text, View,Linking , SafeAreaView,TouchableHighlight, Dimensions,StyleSheet,Pressable ,Image ,Button} from "react-native";
 import { WebView } from 'react-native-webview';
 import styles from "./styles";
 import { pdfs } from "../data/ERes_data";
@@ -7,6 +7,9 @@ import { Flex } from "native-base";
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useState } from "react";
 import { useEffect } from "react";
+import Pdf from "react-native-pdf";
+import { useNavigation } from "@react-navigation/native";
+
 export default function EResources(props) {
 
   const [data, setData] = useState([]);
@@ -23,18 +26,12 @@ console.log(data);
     fetchData();
   }, []);
 
-  const MyWeb = () => {
-   
-      return (
-        <SafeAreaView>
-        <WebView
-          source={{uri: 'https://link.springer.com/openurl?genre=book&isbn=978-0-8176-8418-1'}}
-          style={{marginTop: 20}}
-        />
-        </SafeAreaView>
-      );
-    
-  }
+  const MyWeb = (url) => {
+    navigation.navigate('PdfReader', { pdfUrl: url });
+    }
+
+
+
   const openURI = async () => {
     const url = 'https://link.springer.com/openurl?genre=book&isbn=978-0-8176-8418-1'
     const supported = await Linking.canOpenURL(url); //To check if URL is supported or not.
@@ -81,12 +78,12 @@ console.log(data);
 
            
            </View>
-        <Text style={styles.title}>{item.Main_title}</Text>
+        <Text style={styles.title}>{item.main_title}</Text>
         <Text style={styles.author}>{item.author}</Text>
         <Text style={styles.pub_year}>{item.pub_year}</Text>
          <View style={{ flexDirection: "row" }}>
     <View style={{marginLeft:8,marginBottom:8}}>
-        <Button color='green' title={"read"} onPress={MyWeb }/>
+        <Button color='green' title={"read"} onPress={()=>MyWeb(item.url) }/>
         
     </View>
     <View style={{marginLeft:8,marginBottom:8}}>
@@ -105,3 +102,16 @@ console.log(data);
     </View>
   );
 }
+const pdfstyles = StyleSheet.create({
+  container: {
+      flex: 1,
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      marginTop: 25,
+  },
+  pdf: {
+      flex:1,
+      width:Dimensions.get('window').width,
+      height:Dimensions.get('window').height,
+  }
+});

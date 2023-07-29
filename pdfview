@@ -1,0 +1,28 @@
+   console.log('entered',url)
+   const source = { uri: url, cache: true };
+      return (
+       
+        //const source = require('./test.pdf');  // ios only
+        //const source = {uri:'bundle-assets://test.pdf' };
+        //const source = {uri:'file:///sdcard/test.pdf'};
+        //const source = {uri:"data:application/pdf;base64,JVBERi0xLjcKJc..."};
+        //const source = {uri:"content://com.example.blobs/xxxxxxxx-...?offset=0&size=xxx"};
+        //const source = {uri:"blob:xxxxxxxx-...?offset=0&size=xxx"};
+            <View style={pdfstyles.container}>
+                <Pdf
+                    source={source}
+                    onLoadComplete={(numberOfPages,filePath) => {
+                        console.log(`Number of pages: ${numberOfPages}`);
+                    }}
+                    onPageChanged={(page,numberOfPages) => {
+                        console.log(`Current page: ${page}`);
+                    }}
+                    onError={(error) => {
+                        console.log(error);
+                    }}
+                    onPressLink={(uri) => {
+                        console.log(`Link pressed: ${uri}`);
+                    }}
+                    style={pdfstyles.pdf}/>
+            </View>
+        )

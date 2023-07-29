@@ -25,7 +25,7 @@ import Literature from './src/screens/Literature';
 import ViewPdf from './src/screens/ViewPdf';
 import DrawerNavigator from './src/routes/homeStack';
 import InternalStack from './src/routes/InternalStack';
-
+import PdfReader from './src/screens/PdfReader';
 
   const AppStack = createStackNavigator();
   const Stack = createStackNavigator();
@@ -81,6 +81,12 @@ export default function App() {
      <Stack.Screen
       name="ViewPdf"
       component={ViewPdf}
+     
+    />
+         <Stack.Screen
+      name="PdfReader"
+      component={PdfReader}
+      options={({ route }) => ({ pdfUrl: route.params.pdfUrl })} 
      
     />
 

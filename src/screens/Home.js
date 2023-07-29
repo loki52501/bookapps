@@ -1,12 +1,13 @@
 import React ,{useState} from 'react';
-import { FlatList, SectionList,SafeAreaView,Text, View,StyleSheet,ScrollView,TouchableHighlight,TouchableOpacity } from 'react-native';
+import { FlatList, SectionList,SafeAreaView,Text, View,StyleSheet,TouchableHighlight,TouchableOpacity } from 'react-native';
 import {ImageSlider,Icon}  from "react-native-image-slider-banner";
 import { StatusBar } from 'expo-status-bar';
 import {Image} from 'react-native'
 import { ListItem, SearchBar } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import { ScrollView } from 'react-native-virtualized-view';
+import {useEffect } from 'react';
 import Arts_Sci from '../screens/Arts_Sci';
 import Comp_Exam from '../screens/Comp_Exam';
 import Engg_tech from '../screens/Engg_tech';
@@ -19,6 +20,21 @@ import Literature from './Literature';
 const Stack = createStackNavigator();
 
 const Home = props => {
+  const [searchText, setSearchText] = useState('');
+  const [datas, setDatas] = useState([]);
+  
+  
+  const fetchData = async () => {
+    const resp = await fetch("https://aulib-books.onrender.com/book");
+    const datat = await resp.json();
+    console.log(datat)
+    setDatas(datat.books);
+
+  };
+  useEffect(() => {
+    fetchData();
+  }, [searchText]);
+
 
   const ImageSlide = () => {
     return(
@@ -169,14 +185,7 @@ const Home = props => {
     )
   };
   
-  state = {
-    search: '',
-  };
-  
-  updateSearch = (search) => {
-    this.setState({ search });
-  };
-  const { search } = this.state;
+
   
   return (
     
@@ -186,8 +195,8 @@ const Home = props => {
         <View >
     <SearchBar
         placeholder="Type Here..."
-        onChangeText={this.updateSearch}
-        value={search}
+        onChangeText={text=>{setSearchText(text);}}
+        value={searchText}
       />
       <ImageSlide/>
 
@@ -199,9 +208,6 @@ const Home = props => {
     
   );
 };
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -243,6 +249,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
+
+
 
 
 export default Home;
