@@ -19,8 +19,9 @@ export default function Competitive_Exam(props) {
   const fetchData = async () => {
     const resp = await fetch("https://aulib-books.onrender.com/book");
     const data = await resp.json();
-    console.log(data)
-    setData(data.books);
+    const filteredData = data.books.filter(item => item.type === 'competitiveExam')
+    setData(filteredData);
+    console.log(filteredData)
 
   };
 console.log(data);
@@ -51,7 +52,6 @@ console.log(data);
 
 
   const renderPdfs = ({ item }) => (
-  item.type=='competitiveExam'?(
     <TouchableHighlight 
     underlayColor="transparent"
     onPress={() => onPressRecipe(item)}>
@@ -87,7 +87,7 @@ console.log(data);
      
       </View>
     </TouchableHighlight>
-  ):(null) );
+  );
 
   return (
     <View>

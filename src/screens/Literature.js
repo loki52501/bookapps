@@ -19,8 +19,9 @@ export default function Literature(props) {
   const fetchData = async () => {
     const resp = await fetch("https://aulib-books.onrender.com/book");
     const data = await resp.json();
-    console.log(data)
-    setData(data.books);
+    const filteredData = data.books.filter(item => item.type === 'Literature')
+    setData(filteredData);
+    console.log(filteredData)
 
   };
 console.log(data);
@@ -50,7 +51,7 @@ console.log(data);
 
 
 
-  const renderPdfs = ({ item }) => (item.type=='Literature'?(
+  const renderPdfs = ({ item }) => (
     <TouchableHighlight 
     underlayColor="transparent"
     onPress={() => onPressRecipe(item)}>
@@ -86,7 +87,7 @@ console.log(data);
      
       </View>
     </TouchableHighlight>
-  ):(<></>));
+  );
 
   return (
     <View>

@@ -58,7 +58,7 @@ const SearchResult = ({route}) => {
       <Text style={stylesb.noBooksText}>No books found for this search query.</Text>
     ) : (
  
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={books} renderItem={renderPdfs} keyExtractor={books.pdfid} />
+      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={3} data={books} renderItem={renderPdfs} keyExtractor={books.pdfid} />
   
     )}  
     </View>
