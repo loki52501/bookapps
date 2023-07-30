@@ -25,45 +25,33 @@ const SearchResult = ({route}) => {
     }
 
   
-  const renderPdfs = ({ item }) =>(
-    <TouchableHighlight 
-    underlayColor="transparent"
-    onPress={() => onPressRecipe(item)}>
-      <View style={styles.container}>
-      <View style={styles.img_align}>
-        <Image style={styles.photo} source={{ uri: item.img }} />
-        
-        <TouchableHighlight style = {styles.bookmark}
-         underlayColor= 'transaparent'
-            onPress={() => navigation.navigate("bookmark-outline")}>
-                       <Ionicons name="bookmark-outline" size={24} color="black" />
-                       
-           </TouchableHighlight>
-         {/*  <TouchableHighlight style = {{alignSelf:'flex-end',marginRight:5,marginBottom:20}}
-            onPress={() => navigation.navigate("bookmark-outline")}>
-                       <Ionicons name="information-circle-outline" size={24} color="black" />
-                       
-  </TouchableHighlight>*/}
-
-           
-           </View>
-        <Text style={styles.title}>{item.main_title}</Text>
-        <Text style={styles.author}>{item.author}</Text>
-        <Text style={styles.pub_year}>{item.pub_year}</Text>
-         <View style={{ flexDirection: "row" }}>
-    <View style={{marginLeft:8,marginBottom:8}}>
-        <Button color='green' title={"read"} onPress={()=>MyWeb(item.url) }/>
-        
-    </View>
-    <View style={{marginLeft:8,marginBottom:8}}>
-        <Button title={"details"} onPress={() => onPressRecipe(item)}/>
-        
-    </View>
-</View>
-     
-      </View>
-    </TouchableHighlight>
-  );
+    const renderPdfs = ({ item }) => (
+      <TouchableHighlight style={bookstyles.bookItem}
+      underlayColor="transparent"
+      onPress={() => onPressRecipe(item)}>
+   <View style={bookstyles.bookItem}>
+        <View style={bookstyles.imgContainer}>
+          <Image style={bookstyles.bookImage} source={{ uri: item.img }} />
+         
+        </View>
+        <View style={bookstyles.infoContainer}>
+          <Text style={bookstyles.bookTitle}>{item.main_title}</Text>
+          <Text style={bookstyles.bookAuthor}>{item.author}</Text>
+          <Text numberOfLines={3} style={bookstyles.bookInfo}>
+            {item.description}
+          </Text>
+          <View style={bookstyles.buttonContainer}>
+            <Button color="green" title="Read" onPress={() => MyWeb(item.url)} />
+            <Button title="Details" onPress={() => onPressRecipe(item)} />
+          </View>
+  
+         
+  </View>
+       
+        </View>
+      </TouchableHighlight>
+    );
+  
   return (
     <View>
     {books.length === 0 ? (
@@ -90,7 +78,55 @@ const stylesb = StyleSheet.create({
     marginTop: 20,
   },
 });
-
+const bookstyles = StyleSheet.create({
+  bookItem: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 5,
+    padding: 10,
+  },
+  bookInfo: {
+    fontSize: 14,
+    color: '#999',
+  },
+  imgContainer: {
+    marginRight: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bookImage: {
+    width: 80,
+    height: 120,
+    resizeMode: 'cover',
+  },
+  bookmark: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    padding: 5,
+  },
+  infoContainer: {
+    flex: 1,
+  },
+  bookTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  bookAuthor: {
+    fontSize: 16,
+    color: '#777',
+  },
+  bookDescription: {
+    fontSize: 14,
+    color: '#333',
+    marginTop: 5,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+});
 
 
 

@@ -46,51 +46,73 @@ export default function App() {
     <Stack.Screen
       name="EResources"
       component={EResources}
-    
+      options={{  headerStyle: {
+        backgroundColor: '#64CCC9'
+     } }}
     />
       <Stack.Screen
       name="Notifications"
       component={Notifications}
     
     />
-
+<Stack.Screen name="Engg_tech" component={Engg_tech}  options={{  headerStyle: {
+        backgroundColor: '#64CCC9'
+     } }}/>
 <Stack.Screen
       name="EJournals"
       component={EJournals}
+      options={{  headerStyle: {
+        backgroundColor: '#64CCC9'
+     } }}
     
     />
     <Stack.Screen
       name="Arts_Sci"
       component={Arts_Sci}
-      
+      options={{  headerStyle: {
+        backgroundColor: '#64CCC9'
+     } }}
     />
     <Stack.Screen
       name="Comp_Exam"
       component={Comp_Exam}
-  
+      options={{  headerStyle: {
+        backgroundColor: '#64CCC9'
+     } }}
     />
 
     <Stack.Screen
       name="Literature"
       component={Literature}
-    
+      options={{  headerStyle: {
+        backgroundColor: '#64CCC9'
+     } }}
     />
      <Stack.Screen
       name="ViewPdf"
       component={ViewPdf}
-     
+      options={{  headerStyle: {
+        backgroundColor: '#64CCC9'
+     } }}
     />
          <Stack.Screen
       name="PdfReader"
       component={PdfReader}
-      options={({ route }) => ({ pdfUrl: route.params.pdfUrl })} 
-     
-    />
+      options={({ route }) => ({
+        pdfUrl: route.params.pdfUrl,
+        headerStyle: {
+          backgroundColor: '#64CCC9',
+        },
+      })}  />
       <Stack.Screen
       name="SearchResult"
       component={SearchResult}
-      options={({ route }) => ({ books: route.params.books })} 
-     
+      options={({ route }) => ({
+        books: route.params.books,
+        headerStyle: {
+          backgroundColor: '#64CCC9',
+        },
+      })}
     />
         </Stack.Navigator>
   

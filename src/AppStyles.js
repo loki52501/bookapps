@@ -25,6 +25,7 @@ export const PdfView = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 0.5,
     borderRadius: 15,
+
   },
   photo: {
     width:100,

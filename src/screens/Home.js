@@ -42,7 +42,7 @@ const Home = props => {
     return(
         
      
-      <View>
+      <View style={{backgroundColor:'#B7DDE1'}}>
        <ImageSlider 
     data={[
         {img: 'https://images.indianexpress.com/2019/01/anna-university-1200.jpg'},
@@ -84,13 +84,13 @@ const Home = props => {
     },
     {
       id: '3',
-      title: 'Arts and Science',
+      title: 'Arts & Science',
       screen : Arts_Sci,
       img : require('../../assets/Arts_sci.jpeg')
     },
     {
       id: '4',
-      title: 'Competitive Exams',
+      title: 'Entrance Exam',
       screen: Comp_Exam,
       img: require('../../assets/compexam.jpeg')
     },
@@ -103,8 +103,8 @@ const Home = props => {
     return (
    
     <View style={styles.container}>
-    <Text style={{fontWeight:'bold', fontSize:20, color:'black'}}>
-      Resources .. 
+    <Text style={{fontWeight:'bold', fontSize:20, color:'#0E2954'}}>
+      Resources
     </Text>
     <View style={styles.container}>
     <FlatList
@@ -118,22 +118,24 @@ const Home = props => {
               <TouchableOpacity
                 onPress= {() => {navigation.navigate(item.screen,{name: 'book'})}}
                 style={{
-                  height: 200,
-                  width: 150,
-                 backgroundColor:'lightgrey',
-                  margin: 10
+                  height: 100,
+                  width: 100,
+                 backgroundColor:'#64CCC9',
+                  margin: 40,
+                 
+                  marginRight:50
                 }}
               >
                  {/*{console.log(item.screen())}*/}
                 <Image
               source={item.img}
               style = {{
-                height:160,
-                width:130, 
-                margin:10
+                height:100,
+                width:100, 
+                margin:10,
               }}
               />
-              <Text  style = {{alignContent:'center'}}>
+              <Text  style = {{alignContent:'center',color:'#13294B'}}>
               {item.title}
               </Text>
               </TouchableOpacity>
@@ -143,8 +145,8 @@ const Home = props => {
         />
   
       </View>
-    <Text style={{fontWeight:'bold', fontSize:20, color:'black'}}>
-      Categories .. 
+    <Text style={{fontWeight:'bold', fontSize:20, color:'#0E2954'}}>
+      Categories
     </Text>
     <View style={styles.container}>
     <FlatList
@@ -157,20 +159,21 @@ const Home = props => {
             <TouchableOpacity
             onPress= {() => {navigation.navigate(item.screen,{name: 'book'})}}
               style={{
-                height: 200,
-                width: 150,
-                backgroundColor: "gold",
-                margin: 10
+                height: 100,
+                width: 100,
+               backgroundColor:'#64CCC9',
+                margin: 40,
+                marginRight:50
               }}>
                 <Image
                 style = {{
-                  height:160,
-                  width:130, 
-                  margin:10
+                  height:100,
+                width:100, 
+                margin:10
                 }}
               source={item.img}
               />
-              <Text  style = {{alignContent:'center'}}>
+              <Text  style = {{alignContent:'center',color:'#13294B'}}>
               {item.title}
               </Text>
               </TouchableOpacity>
@@ -214,7 +217,7 @@ const Home = props => {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor:'#f2f2f2',
+    backgroundColor:'#E6FFFD',
     justifyContent: 'center',
     alignItems: 'center',
 
@@ -223,7 +226,7 @@ const styles = StyleSheet.create({
   button: {
     padding: 40,
     borderRadius: 4,
-    backgroundColor: '#F88',
+    backgroundColor: '#4AC9E3',
   },
   text: {
     fontSize: 18,

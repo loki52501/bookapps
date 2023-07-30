@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-virtualized-view';
 import {useEffect } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useSearch } from './SearchContext';
-
+import { Feather } from '@expo/vector-icons';
 const Searchbar = props => {
   console.log('searchbar',props.book)
   const books=props.book;
@@ -79,15 +79,19 @@ const Searchbar = props => {
   );
 
   return (
-    <View >
+    <View style={styles.container} >
       {console.log('got it)',showSearchResults)}
+      
               <TextInput
-            style={styles.searchBar}
+           style={styles.searchInput}
             placeholder="Search for books..."
             onChangeText={(text) => setSearchText(text)}
             onSubmitEditing={handleSearchButtonPress} // Handle the search button press
             value={searchText}
           />
+          <TouchableOpacity onPress={handleSearchButtonPress} style={styles.searchIconContainer}>
+        <Feather name="search" size={24} color="black"  />
+      </TouchableOpacity>
 
     </View>
   );
@@ -96,12 +100,26 @@ const Searchbar = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    backgroundColor:'#f2f2f2',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: '#B7DDE1',
+  },
+  searchIconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    paddingRight: 10,
+    backgroundColor:'#64CCC9',
+    height: 40,
+    borderColor:'black'
+  },
 
-  
+  searchInput: {
+    flex: 1,
+    height: 40,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    backgroundColor: 'white',
   },
   button: {
     padding: 40,

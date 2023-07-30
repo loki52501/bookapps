@@ -28,7 +28,7 @@ const Onboarding = () => {
         </View>
           <Page
             iconName= 'book-reader'
-            backgroundColor="#ffc93c"
+            backgroundColor="#006EB3"
             title="Welcome to AU Library"
           />
           <Footer

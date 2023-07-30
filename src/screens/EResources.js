@@ -79,8 +79,8 @@ console.log(data);
 
            
            </View>
-        <Text style={styles.title}>{item.main_title}</Text>
-        <Text style={styles.author}>{item.author}</Text>
+        <Text style={styles.title} numberOfLines={2}>{item.main_title}</Text>
+        <Text style={styles.author}numberOfLines={1}>{item.author}</Text>
         <Text style={styles.pub_year}>{item.pub_year}</Text>
          <View style={{ flexDirection: "row" }}>
     <View style={{marginLeft:8,marginBottom:8}}>
@@ -98,7 +98,7 @@ console.log(data);
   );
 
   return (
-    <View>
+    <View style={{backgroundColor:'#E6FFFD'}}>
       <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={data} renderItem={renderPdfs} keyExtractor={data.pdfid} />
     </View>
   );

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { FlatList,Text, View,Image,StyleSheet,Button,TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-virtualized-view';
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { useRoute } from "@react-navigation/native"
+import { useNavigation, useRoute } from "@react-navigation/native"
 import { Linking } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import { useState } from 'react';
 const { StorageAccessFramework } = FileSystem;
-
+import ProgressCircle from 'react-native-progress/Circle';
 
 
 
@@ -15,7 +15,7 @@ export default function ViewPdf() {
   const [downloadProgress, setDownloadProgress] = useState();
 
   const downloadPath = FileSystem.documentDirectory + (Platform.OS == 'android' ? '' : '');
-
+const navigation =useNavigation();
   const route = useRoute()
   const item = route.params?.item
   const ensureDirAsync = async (dir, intermediates = true) => {
@@ -33,7 +33,7 @@ export default function ViewPdf() {
     setDownloadProgress(progress);
   };
   
-  
+
   const saveAndroidFile = async (fileUri, fileName = item['main_title']) => {
     try {
       const fileString = await FileSystem.readAsStringAsync(fileUri, { encoding: FileSystem.EncodingType.Base64 });
@@ -59,22 +59,23 @@ export default function ViewPdf() {
     }
   }
   const downloadFile = async (fileUrl) => {
-    console.log('entered')
+    console.log('entered downloadfile')
     console.log(downloadPath)
     if (Platform.OS == 'android') {
       const dir = ensureDirAsync(downloadPath);
     }
-  
+
     let fileName = item['main_title'];
     //alert(fileName)
-    const downloadResumable = FileSystem.createDownloadResumable(
+    const downloadResumable =FileSystem.createDownloadResumable(
       fileUrl,
       downloadPath + fileName,
       {},
       downloadCallback
     );
-  
+    
     try {
+
       const { uri } = await downloadResumable.downloadAsync();
       console.log('hi')
       console.log(uri+fileName)
@@ -85,6 +86,9 @@ export default function ViewPdf() {
     }
   }
   
+  const MyWeb = (url) => {
+    navigation.navigate('PdfReader', { pdfUrl: url });
+    }
 
   const InfoBook = () =>(
      
@@ -125,6 +129,7 @@ export default function ViewPdf() {
                 <Ionicons name="download-outline" size={24} color="white" style = {{fontWeight:'bold',marginRight:5,marginTop:5}} />
                 <Text style={{ color: 'white',fontWeight:'bold',fontSize:17,marginTop:5 }}  onPress={async () => {
     const url = item.url
+    console.log('entered download');
    downloadFile(url)
     }}>Download</Text>
               </View>
@@ -144,7 +149,7 @@ export default function ViewPdf() {
                 }}
               >
                 <Ionicons name="book-outline" size={24} color="white" style = {{fontWeight:'bold',marginRight:12 ,marginTop:5}} />
-                <Text style={{ color: 'white',fontWeight:'bold',fontSize:17,marginTop:5,marginRight:14 }}>Read</Text>
+                <Text style={{ color: 'white',fontWeight:'bold',fontSize:17,marginTop:5,marginRight:14 }} onPress={()=>MyWeb(item.url)}>Read</Text>
               </View>
             </TouchableOpacity>
 
@@ -216,5 +221,13 @@ const styles = StyleSheet.create({
     
 
   
-  }
-})
+  },
+    
+    progressText: {
+      fontSize: 16,
+      marginTop: 10,
+    },
+  });
+  
+  
+

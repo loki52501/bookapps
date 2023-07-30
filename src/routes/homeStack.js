@@ -9,6 +9,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { createDrawerNavigator,DrawerContentScrollView,
   DrawerItemList, } from '@react-navigation/drawer';
 import Header  from '../components/Header';
+import { Center } from 'native-base';
 
 const Drawer = createDrawerNavigator();
 
@@ -74,10 +75,10 @@ function DrawerNavigator () {
 
       options={{
         
-        headerTitle: () => <Header name="Welcome" />,
+        headerTitle: () => <Header  name="       AU Library" />,
         headerStyle: {
-          backgroundColor: '#8cb05a',
-          height: 130,
+          backgroundColor: '#64CCC9',
+          height: 80,
         },
         
         headerRight: () => (
