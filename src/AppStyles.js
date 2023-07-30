@@ -23,16 +23,18 @@ export const PdfView = StyleSheet.create({
     width: (SCREEN_WIDTH - (bookNumColums + 1) * BOOK_ITEM_MARGIN) / bookNumColums,
     height: BOOK_ITEM_HEIGHT + 75,
     borderColor: 'grey',
-    borderWidth: 0.5,
-    borderRadius: 15,
+    borderWidth: 1.5,
+    borderRadius: 10,
+    marginBottom:20
 
   },
   photo: {
     width:100,
     height: 100,
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
     
-    marginLeft: 50
+    marginLeft: 10,
+    marginRight:10
   },
   title: {
 
@@ -75,7 +77,7 @@ export const PdfView = StyleSheet.create({
   
   img_align:{
     
-    justifyContent: 'space-between',
+    justifyContent: 'center',
    
     padding: 8,
     flexDirection:'row',

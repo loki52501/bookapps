@@ -156,45 +156,45 @@ const navigation =useNavigation();
             </View>
               <View style={styles.container}>
               <View style = {{flexDirection: 'row'}}>
-              <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
-                Title</Text>
-              <Text style = {{marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'normal'}}> {item.main_title}</Text>           
+            
+              <Text  style = {{marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'bold'}}> {item.main_title}</Text>           
+              </View>
+              <View style = {{flexDirection: 'row'}}>
+            
+            <Text style = {{flex:11,flexWrap:'wrap',marginTop:20,marginLeft: 30,fontSize:18, fontWeight:'normal'}}> {item.descr}</Text>           
+            </View>
+              <View style = {{flexDirection: 'row'}}>
+              <Text numberOfLines={2} style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
+                Author</Text>
+              <Text style = {{flex: 1,marginTop:10,marginLeft: 80,fontSize:18, fontWeight:'normal'}}> {item.author}</Text>           
               </View>
                 <View style = {{flexDirection: 'row'}}>
               <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
                 Subject</Text>
-              <Text style = {{marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'normal'}}> {item.sub}</Text>           
+              <Text style = {{flex: 1,marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'normal'}}> {item.sub}</Text>           
               </View>
 
-              <View style = {{flexDirection: 'row'}}>
-              <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
-                Author</Text>
-              <Text style = {{marginTop:10,marginLeft: 80,fontSize:18, fontWeight:'normal'}}> {item.author}</Text>           
-              </View>
+           
 
               <View style = {{flexDirection: 'row'}}>
               <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
                 Edition</Text>
-              <Text style = {{marginTop:10,marginLeft: 80,fontSize:18, fontWeight:'normal'}}> {item.pub_year}</Text>           
+              <Text style = {{flex: 1,marginTop:10,marginLeft: 80,fontSize:18, fontWeight:'normal'}}> {item.pub_year}</Text>           
               </View>
 
               <View style = {{flexDirection: 'row'}}>
               <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
                 Publisher</Text>
-              <Text style = {{marginTop:10,marginLeft: 60,fontSize:18, fontWeight:'normal'}}> {item.pub}</Text>           
+              <Text style = {{flex: 1,marginTop:10,marginLeft: 60,fontSize:18, fontWeight:'normal'}}> {item.pub}</Text>           
               </View>
 
               <View style = {{flexDirection: 'row'}}>
               <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
                 Language</Text>
-              <Text style = {{marginTop:10,marginLeft: 60,fontSize:18, fontWeight:'normal'}}> {item.lan}</Text>           
+              <Text style = {{marginTop:10,marginBottom:30,marginLeft: 60,fontSize:18, fontWeight:'normal'}}> {item.lan}</Text>           
               </View>
 
-              <View style = {{flexDirection: 'column'}}>
-              <Text style = {{marginTop:10,alignContent:'flex-start',marginLeft:40,fontSize:18, fontWeight:'normal',color:'grey'}}>
-                Description</Text>
-              <Text style = {{marginTop:10,marginLeft: 70,fontSize:18, fontWeight:'normal'}}> {item.descr}</Text>           
-              </View>
+             
 
          </View>
 

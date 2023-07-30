@@ -20,7 +20,7 @@ import EResources from './src/screens/EResources'
 import EJournals from './src/screens/EJournals';
 import Arts_Sci from './src/screens/Arts_Sci';
 import Engg_tech from './src/screens/Engg_tech';
-import Comp_Exam from './src/screens/Comp_Exam';
+import Competitive_Exam from './src/screens/Comp_Exam';
 import Literature from './src/screens/Literature';
 import ViewPdf from './src/screens/ViewPdf';
 import DrawerNavigator from './src/routes/homeStack';
@@ -55,7 +55,7 @@ export default function App() {
       component={Notifications}
     
     />
-<Stack.Screen name="Engg_tech" component={Engg_tech}  options={{  headerStyle: {
+<Stack.Screen name="Engineering" component={Engg_tech}  options={{  headerStyle: {
         backgroundColor: '#64CCC9'
      } }}/>
 <Stack.Screen
@@ -74,8 +74,8 @@ export default function App() {
      } }}
     />
     <Stack.Screen
-      name="Comp_Exam"
-      component={Comp_Exam}
+      name="Competitive_Exam"
+      component={Competitive_Exam}
       options={{  headerStyle: {
         backgroundColor: '#64CCC9'
      } }}

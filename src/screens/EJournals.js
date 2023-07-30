@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { WebView } from 'react-native-webview';
 
+const EJournals = () => {
+  const websiteUrl = 'https://ieeexplore.ieee.org/browse/periodicals/title'; // Replace with the URL you want to open
 
-export default class EJournals extends Component {
-   static   navigationOptions = {
-      drawerLabel: 'SecondScreen Name',
-    }
-    render() {
-      return (
-          <View style={{flex:1,flexDirection:'column',}}>
-          
-         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-           <Text>2 Screen......!</Text>
-         </View>
-         </View>
-        
-      );
-    }
+  return (
+    <View style={styles.container}>
+      <WebView source={{ uri: websiteUrl }} style={styles.webView} />
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  webView: {
+    flex: 1,
+  },
+});
+
+export default EJournals;

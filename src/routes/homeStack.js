@@ -28,30 +28,19 @@ const CustomDrawer = props => {
           }}
         >
           <View>
-            <Text>John Doe</Text>
-            <Text>example@email.com</Text>
+            <Text>CEGLibrary</Text>
+ 
           </View>
           <Image
             source={{
-              uri: 'https://images.unsplash.com/photo-1624243225303-261cc3cd2fbc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
+              uri: 'https://lh3.googleusercontent.com/p/AF1QipOlhq74gGkZ6DSBQVEic9azLnexXcsr-oy5Da3o=s1360-w1360-h1020',
             }}
             style={{ width: 60, height: 60, borderRadius: 30 }}
           />
         </View>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          right: 0,
-          left: 0,
-          bottom: 50,
-          backgroundColor: '#f6f6f6',
-          padding: 20,
-        }}
-      >
-        <Text>Log Out</Text>
-      </TouchableOpacity>
+
     </View>
   );
 };
@@ -99,23 +88,7 @@ function DrawerNavigator () {
           
       }}
       />
-        <Drawer.Screen name="ReviewDetails" component={ReviewDetails}
-        options={{
-            headerTitle: () => <Header name="ReviewDetails" />,
-            headerStyle: {
-              backgroundColor: 'pink',
-              height: 130,
-            },
-            headerRight: () => (
-            
-                <Button
-                  onPress={() => alert('This is a button!')}
-                  title="Info"
-                  color="#00cc00"
-                />
-              ),
-            
-          }} />
+    
     </Drawer.Navigator>
   );
 };

@@ -9,8 +9,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView } from 'react-native-virtualized-view';
 import Searchbar from './Searchbar';
 import Arts_Sci from '../screens/Arts_Sci';
-import Comp_Exam from '../screens/Comp_Exam';
-import Engg_tech from '../screens/Engg_tech';
+import Competitive_Exam from '../screens/Comp_Exam';
+import Engineering from '../screens/Engg_tech';
 import ReviewDetails from '../screens/ReviewDetails'
 import EResources from './EResources';
 import EJournals from './EJournals';
@@ -78,8 +78,8 @@ const Home = props => {
     },
     {
       id: '2',
-      title: 'Engg and Tech',
-      screen : Engg_tech,
+      title: 'Eng and Tech',
+      screen : Engineering,
       img: require('../../assets/enggtech.jpeg')
     },
     {
@@ -91,7 +91,7 @@ const Home = props => {
     {
       id: '4',
       title: 'Entrance Exam',
-      screen: Comp_Exam,
+      screen: Competitive_Exam,
       img: require('../../assets/compexam.jpeg')
     },
   ];
@@ -103,7 +103,7 @@ const Home = props => {
     return (
    
     <View style={styles.container}>
-    <Text style={{fontWeight:'bold', fontSize:20, color:'#0E2954'}}>
+    <Text style={{fontWeight:'bold', fontSize:20, color:'#0E2954',marginTop:'5%'}}>
       Resources
     </Text>
     <View style={styles.container}>
@@ -145,7 +145,8 @@ const Home = props => {
         />
   
       </View>
-    <Text style={{fontWeight:'bold', fontSize:20, color:'#0E2954'}}>
+    <Text style={{fontWeight:'bold', fontSize:20, color:'#0E2954',marginTop:40,marginBottom:'1%'}}>
+ 
       Categories
     </Text>
     <View style={styles.container}>
@@ -157,13 +158,14 @@ const Home = props => {
          
          
             <TouchableOpacity
-            onPress= {() => {navigation.navigate(item.screen,{name: 'book'})}}
+            onPress= {() => {navigation.navigate(item.screen,{name: item.title})}}
               style={{
                 height: 100,
                 width: 100,
                backgroundColor:'#64CCC9',
                 margin: 40,
-                marginRight:50
+                marginRight:50,
+             
               }}>
                 <Image
                 style = {{
@@ -184,7 +186,7 @@ const Home = props => {
         />
   
       </View>
-    
+    <View style={{height:20}}></View>
     </View>
    
     )
@@ -220,6 +222,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#E6FFFD',
     justifyContent: 'center',
     alignItems: 'center',
+
 
   
   },

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { FlatList, Text, View,Linking , SafeAreaView,TouchableHighlight, Dimensions,StyleSheet,Pressable ,Image ,Button} from "react-native";
+import { FlatList, Text, View,Linking , SafeAreaView,TouchableHighlight, Dimensions,StyleSheet,Pressable ,Image } from "react-native";
 import { WebView } from 'react-native-webview';
 import styles from "./styles";
 import { pdfs } from "../data/ERes_data";
@@ -9,9 +9,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Pdf from "react-native-pdf";
 import { useNavigation } from "@react-navigation/native";
+import { Stack, Button } from "@react-native-material/core";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
-
-export default function Engg_tech(props) {
+export default function Engineering(props) {
 
   const [data, setData] = useState([]);
 
@@ -49,7 +50,7 @@ console.log(data);
 
 
 
-  const renderPdfs = ({ item }) => (
+  const renderPdfs = ({ item }) =>item.type=='engineering'? (
     <TouchableHighlight 
     underlayColor="transparent"
     onPress={() => onPressRecipe(item)}>
@@ -57,12 +58,7 @@ console.log(data);
       <View style={styles.img_align}>
         <Image style={styles.photo} source={{ uri: item.img }} />
         
-        <TouchableHighlight style = {styles.bookmark}
-         underlayColor= 'transaparent'
-            onPress={() => navigation.navigate("bookmark-outline")}>
-                       <Ionicons name="bookmark-outline" size={24} color="black" />
-                       
-           </TouchableHighlight>
+       
          {/*  <TouchableHighlight style = {{alignSelf:'flex-end',marginRight:5,marginBottom:20}}
             onPress={() => navigation.navigate("bookmark-outline")}>
                        <Ionicons name="information-circle-outline" size={24} color="black" />
@@ -71,23 +67,26 @@ console.log(data);
 
            
            </View>
-        <Text style={styles.title}>{item.main_title}</Text>
-        <Text style={styles.author}>{item.author}</Text>
-        <Text style={styles.pub_year}>{item.pub_year}</Text>
+        <Text style={styles.title} numberOfLines={2}>{item.main_title}</Text>
+        <Text style={styles.author}numberOfLines={1}>{item.author}</Text>
+     
          <View style={{ flexDirection: "row" }}>
-    <View style={{marginLeft:8,marginBottom:8}}>
-        <Button color='green' title={"read"} onPress={()=>MyWeb(item.url) }/>
-        
-    </View>
-    <View style={{marginLeft:8,marginBottom:8}}>
-        <Button title={"details"} onPress={() => onPressRecipe(item)}/>
-        
-    </View>
+         <Stack fill center spacing={1}>
+    <Button
+      variant="outlined"
+      title="Read"
+      leading={props => <Icon name="read" {...props} />}
+      onPress={()=>MyWeb(item.url)}
+    />
+    <Button variant="outlined"
+     title="Details" trailing={props => <Icon name="arrow-right-circle-outline" {...props} />}
+     onPress={() => onPressRecipe(item)} />
+  </Stack>
 </View>
      
       </View>
     </TouchableHighlight>
-  );
+  ):(<></>);
 
   return (
     <View>
@@ -95,16 +94,3 @@ console.log(data);
     </View>
   );
 }
-const pdfstyles = StyleSheet.create({
-  container: {
-      flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      marginTop: 25,
-  },
-  pdf: {
-      flex:1,
-      width:Dimensions.get('window').width,
-      height:Dimensions.get('window').height,
-  }
-});
