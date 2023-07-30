@@ -86,7 +86,7 @@ console.log(data);
      
       </View>
     </TouchableHighlight>
-  ):(<></>));
+  ):(null));
 
   return (
     <View>
