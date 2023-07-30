@@ -50,7 +50,7 @@ console.log(data);
 
 
 
-  const renderPdfs = ({ item }) => (item.type=='Science'?( 
+  const renderPdfs = ({ item }) => ({item.type=='Science'?( 
     <TouchableHighlight 
     underlayColor="transparent"
     onPress={() => onPressRecipe(item)}>
@@ -86,7 +86,7 @@ console.log(data);
      
       </View>
     </TouchableHighlight>
-  ):(null));
+  ):null});
 
   return (
     <View>
